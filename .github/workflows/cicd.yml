@@ -1,0 +1,21 @@
+name: Talent Academy Demo
+on: [ push ]    # List on one line
+jobs:
+  terraform-deployment:
+    runs-on: ubuntu-latest
+    steps: # The list of steps to take for executionnn
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Clone your code in the pipeline
+        uses: actions/checkout@v2
+
+      
+      - name: Run playbook to configure nginx 
+        id: run playbook
+        run: ansible-playbook playbook.yml 
+        continue-on-error: true
