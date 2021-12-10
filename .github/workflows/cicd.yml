@@ -16,6 +16,6 @@ jobs:
 
       
       - name: Run playbook to configure nginx 
-        id: run playbook
+        id: run_playbook
         run: ansible-playbook playbook.yml 
         continue-on-error: true
