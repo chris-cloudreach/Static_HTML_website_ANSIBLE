@@ -2,7 +2,7 @@ name: Talent Academy Demo
 on: [ push ]    # List on one line
 jobs:
   terraform-deployment:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps: # The list of steps to take for executionnn
       - name: Authenticate with AWS
         uses: aws-actions/configure-aws-credentials@v1
@@ -22,7 +22,7 @@ jobs:
           host: 3.250.95.231
           user: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY}}
-          
+
       - name: Running our playbook
         uses: saubermacherag/ansible-playbook-docker-action@v1.4
         with:
