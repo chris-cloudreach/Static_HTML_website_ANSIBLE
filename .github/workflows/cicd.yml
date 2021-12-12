@@ -23,12 +23,12 @@ jobs:
           user: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY}}
 
-      - name: Running our playbook
-        uses: saubermacherag/ansible-playbook-docker-action@v1.4
-        with:
-          playbookName: 'playbook.yml'
-          inventoryFile: 'inventory.hosts'
-          keyFile: ${{ secrets.SSH_PRIVATE_KEY}}
+      # - name: Running our playbook
+      #   uses: saubermacherag/ansible-playbook-docker-action@v1.4
+      #   with:
+      #     playbookName: 'playbook.yml'
+      #     inventoryFile: 'inventory.hosts'
+      #     keyFile: ${{ secrets.SSH_PRIVATE_KEY}}
 
       # - name: Run playbook to configure nginx 
       #   id: run_playbook
