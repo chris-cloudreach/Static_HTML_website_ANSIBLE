@@ -36,7 +36,7 @@ jobs:
             cd /tmp
             ls -a
           host: 34.243.23.80
-          user: ubuntu
+          user: root
           key: ${{ secrets.SSH_PRIVATE_KEY}}
 
       # - name: Create SSH key
