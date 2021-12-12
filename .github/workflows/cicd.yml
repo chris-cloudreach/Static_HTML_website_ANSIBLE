@@ -13,18 +13,18 @@ jobs:
 
       - name: Clone your code in the pipeline
         uses: actions/checkout@v2  
-      # - name: Decrypt Pem
-      #   run: ./decrypt_secret.sh
-      #   env:
-      #     LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      - name: Decrypt Pem
+        run: ./decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
       # - name: Test printing your secret (Remove this step in production)
       #   run: cat $HOME/secrets/ta-lab-key.pem
 
-      - name: Convert ssh key to file      
-        uses: webfactory/ssh-agent@v0.5.2
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      # - name: Convert ssh key to file      
+      #   uses: webfactory/ssh-agent@v0.5.2
+      #   with:
+      #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           
 
@@ -35,17 +35,17 @@ jobs:
           user: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY}}
 
-      - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          # Required, playbook filepath
-          playbook: playbook.yml
-          # Optional, directory where playbooks live
-          directory: ./
-          # Optional, SSH private key
-          key: ${{secrets.SSH_PRIVATE_KEY}}
-          # Optional, literal inventory file contents
-          inventory: inventory.hosts
+      # - name: Run playbook
+      #   uses: dawidd6/action-ansible-playbook@v2
+      #   with:
+      #     # Required, playbook filepath
+      #     playbook: playbook.yml
+      #     # Optional, directory where playbooks live
+      #     directory: ./
+      #     # Optional, SSH private key
+      #     key: ${{secrets.SSH_PRIVATE_KEY}}
+      #     # Optional, literal inventory file contents
+      #     inventory: inventory.hosts
             
           # Optional, SSH known hosts file content
           # known_hosts: .known_hosts
@@ -63,7 +63,7 @@ jobs:
       #     inventoryFile: 'inventory.hosts'
           # keyFile: $HOME/secrets/ta-lab-key.pem
 
-      # - name: Run playbook to configure nginx 
-      #   id: run_playbook
-      #   run: ansible-playbook playbook.yml 
-      #   continue-on-error: true
+      - name: Run playbook to configure nginx 
+        id: run_playbook
+        run: ansible-playbook playbook.yml 
+        continue-on-error: true

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Decrypt the file
 mkdir ~/.ssh
