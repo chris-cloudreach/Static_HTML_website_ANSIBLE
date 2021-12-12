@@ -2,7 +2,7 @@ name: Talent Academy Demo
 on: [ push ]    # List on one line
 jobs:
   terraform-deployment:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps: # The list of steps to take for executionnn
       - name: Authenticate with AWS
         uses: aws-actions/configure-aws-credentials@v1
