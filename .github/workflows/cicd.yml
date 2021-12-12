@@ -12,7 +12,12 @@ jobs:
           aws-region: eu-west-1
 
       - name: Clone your code in the pipeline
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  
+
+      - name: Convert ssh key to file      
+        uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
      
 
@@ -23,14 +28,14 @@ jobs:
           user: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY}}
 
-      - name: Running our playbook
-        uses: saubermacherag/ansible-playbook-docker-action@v1.4
-        with:
-          playbookName: 'playbook.yml'
-          inventoryFile: 'inventory.hosts'
-          keyFile: ${{ secrets.SSH_PRIVATE_KEY}}
+      # - name: Running our playbook
+      #   uses: saubermacherag/ansible-playbook-docker-action@v1.4
+      #   with:
+      #     playbookName: 'playbook.yml'
+      #     inventoryFile: 'inventory.hosts'
+      #     keyFile: ${{ secrets.SSH_PRIVATE_KEY}}
 
-      # - name: Run playbook to configure nginx 
-      #   id: run_playbook
-      #   run: ansible-playbook playbook.yml 
-      #   continue-on-error: true
+      - name: Run playbook to configure nginx 
+        id: run_playbook
+        run: ansible-playbook playbook.yml 
+        continue-on-error: true
