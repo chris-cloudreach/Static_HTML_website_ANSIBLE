@@ -22,7 +22,7 @@ jobs:
       #     name: ta-lab-key
 
       - name: executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: 34.243.23.80
           username: ubuntu
