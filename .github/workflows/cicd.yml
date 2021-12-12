@@ -13,21 +13,20 @@ jobs:
 
       - name: Clone your code in the pipeline
         uses: actions/checkout@v2  
-      - name: Decrypt Pem
-        run: ./decrypt_secret.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      # - name: Decrypt Pem
+      #   run: ./decrypt_secret.sh
+      #   env:
+      #     LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
-      - name: Test printing your secret (Remove this step in production)
-        run: cat $HOME/secrets/ta-lab-key.pem
+      # - name: Test printing your secret (Remove this step in production)
+      #   run: cat $HOME/secrets/ta-lab-key.pem
 
-      # - name: Convert ssh key to file      
-      #   uses: webfactory/ssh-agent@v0.5.2
-      #   with:
-      #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Convert ssh key to file      
+        uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-     
-      
+          
 
       - name: Checking ssh connection
         uses: fifsky/ssh-action@master
@@ -41,7 +40,7 @@ jobs:
         with:
           playbookName: 'playbook.yml'
           inventoryFile: 'inventory.hosts'
-          keyFile: $HOME/secrets/ta-lab-key.pem
+          # keyFile: $HOME/secrets/ta-lab-key.pem
 
       # - name: Run playbook to configure nginx 
       #   id: run_playbook
