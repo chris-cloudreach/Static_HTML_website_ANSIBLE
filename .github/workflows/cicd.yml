@@ -32,11 +32,8 @@ jobs:
       - name: connection via ssh check
         uses: fifsky/ssh-action@master
         with:
-          command: |
-            cd /tmp
-            ls -a
-          host: 34.243.23.80
-          user: root
+          host: 3.250.95.231
+          user: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY}}
 
       # - name: Create SSH key
