@@ -21,13 +21,23 @@ jobs:
       #     known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
       #     name: ta-lab-key
 
-      - name: executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@v0.1.4
+      # - name: executing remote ssh commands using ssh key
+      #   uses: appleboy/ssh-action@v0.1.4
+      #   with:
+      #     host: 34.243.23.80
+      #     username: ubuntu
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     port: 22
+
+      - name: connection via ssh check
+        uses: fifsky/ssh-action@master
         with:
+          command: |
+            cd /tmp
+            ls -a
           host: 34.243.23.80
-          username: ubuntu
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
+          user: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY}}
 
       # - name: Create SSH key
       #   run: |
