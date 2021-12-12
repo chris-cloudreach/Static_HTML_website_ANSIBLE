@@ -21,7 +21,7 @@ jobs:
 
      
       - name: Decrypt Pem
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output $HOME/secrets/ta-lab-key.pem ta-lab-key.pem.gpg
+        run: ./.github/scripts/decrypt_secret.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
