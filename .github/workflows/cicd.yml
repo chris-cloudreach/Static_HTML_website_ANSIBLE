@@ -35,11 +35,32 @@ jobs:
           user: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY}}
 
-      - name: Running our playbook
-        uses: saubermacherag/ansible-playbook-docker-action@v1.4
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbookName: 'playbook.yml'
-          inventoryFile: 'inventory.hosts'
+          # Required, playbook filepath
+          playbook: playbook.yml
+          # Optional, directory where playbooks live
+          directory: ./
+          # Optional, SSH private key
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # Optional, literal inventory file contents
+          inventory: inventory.hosts
+            
+          # Optional, SSH known hosts file content
+          # known_hosts: .known_hosts
+          # Optional, encrypted vault password
+          # vault_password: ${{secrets.VAULT_PASSWORD}}
+          # Optional, galaxy requirements filepath
+          # requirements: galaxy-requirements.yml
+          # Optional, additional flags to pass to ansible-playbook
+          
+
+      # - name: Running our playbook
+      #   uses: saubermacherag/ansible-playbook-docker-action@v1.4
+      #   with:
+      #     playbookName: 'playbook.yml'
+      #     inventoryFile: 'inventory.hosts'
           # keyFile: $HOME/secrets/ta-lab-key.pem
 
       # - name: Run playbook to configure nginx 
