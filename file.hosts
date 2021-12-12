@@ -1,6 +1,6 @@
 [webserver]
-54.75.191.37
+3.250.95.231
 
 [webserver:vars]
 ansible_user = "ubuntu"
-ansible_ssh_private_key_file = "~/.ssh/gha"
+ansible_ssh_private_key_file = "~/.ssh/ta-lab-key.pem"
